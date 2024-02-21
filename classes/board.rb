@@ -43,6 +43,19 @@ class Board
       shape
     )
 
+    update_board_state(shape, position)
+
     draw
+  end
+
+  def update_board_state(shape, position)
+    case position
+    when 1..3
+      @board_state[0][position - 1] = shape
+    when 4..6
+      @board_state[1][position - 4] = shape
+    when 7..9
+      @board_state[2][position - 7] = shape
+    end
   end
 end
