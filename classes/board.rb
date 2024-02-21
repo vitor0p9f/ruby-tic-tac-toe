@@ -4,13 +4,24 @@
 class Board
   private
 
-  attr_accessor :boards_state, :board_template, :current_player, :current_board
+  attr_accessor :board_template, :current_board
+
+  def update_board_state(shape, position)
+    case position
+    when 1..3
+      @board_state[0][position - 1] = shape
+    when 4..6
+      @board_state[1][position - 4] = shape
+    when 7..9
+      @board_state[2][position - 7] = shape
+    end
+  end
 
   public
 
-  def initialize(players)
-    @players = players
+  attr_reader :board_state
 
+  def initialize
     @board_template = <<~BOARD
       \t      │     │
       \t   1  │  2  │  3
@@ -46,16 +57,5 @@ class Board
     update_board_state(shape, position)
 
     draw
-  end
-
-  def update_board_state(shape, position)
-    case position
-    when 1..3
-      @board_state[0][position - 1] = shape
-    when 4..6
-      @board_state[1][position - 4] = shape
-    when 7..9
-      @board_state[2][position - 7] = shape
-    end
   end
 end
