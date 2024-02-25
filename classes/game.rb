@@ -8,12 +8,11 @@ class Game
   def initialize
     @players = [].push(Player.new('X'), Player.new('O'))
     @board = Board.new
-    @moves = 0
     @current_player = ['Player 1', 'Player 2'].sample
-    @win_or_draw = false
     @win_or_tie = false
     @selected_positions = []
     @winner = ''
+    @moves = 0
   end
 
   def start
@@ -22,7 +21,7 @@ class Game
     @board.draw
 
     loop do
-      break if @win_or_draw
+      break if @win_or_tie
 
       print "It's #{@current_player} time, choose a position: "
 
@@ -37,6 +36,10 @@ class Game
         position
       )
 
+      @moves += 1
+
+      check_win_or_tie
+
       @selected_positions.push(position)
 
       @current_player = if @current_player == 'Player 1'
@@ -45,11 +48,12 @@ class Game
                           'Player 1'
                         end
     end
+
+    puts "Winner: #{@winner}"
   end
 
   private
 
-  def check_for_winner; end
   def check_win_or_tie
     first_column = []
     second_column = []
