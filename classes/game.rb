@@ -11,7 +11,9 @@ class Game
     @moves = 0
     @current_player = ['Player 1', 'Player 2'].sample
     @win_or_draw = false
+    @win_or_tie = false
     @selected_positions = []
+    @winner = ''
   end
 
   def start
@@ -48,6 +50,37 @@ class Game
   private
 
   def check_for_winner; end
+  def check_win_or_tie
+    first_column = []
+    second_column = []
+    third_column = []
+
+    @board.shapes_arrangement.map do |line|
+      @winner = 'Player 1' if line.all? { |shape| shape == @players[0].shape }
+
+      @winner = 'Player 2' if line.all? { |shape| shape == @players[1].shape }
+
+      line.map.with_index do |shape, index|
+        case index
+        when 0
+          first_column << shape
+        when 1
+          second_column << shape
+        else
+          third_column << shape
+        end
+      end
+    end
+
+    [first_column, second_column, third_column].map do |column|
+      @winner = 'Player 1' if column.all? { |shape| shape == @players[0].shape }
+      @winner = 'Player 2' if column.all? { |shape| shape == @players[1].shape }
+    end
+
+    @winner = 'tie' if @winner.empty? && @moves == 9
+
+    @win_or_tie = true unless @winner.empty?
+  end
 
   def restart; end
 end
