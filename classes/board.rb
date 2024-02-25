@@ -2,59 +2,56 @@
 
 # Represents a tic-tac-toe board
 class Board
+  TEMPLATE = <<~BOARD
+    \t      │     │
+    \t   1  │  2  │  3
+    \t      │     │
+    \t ─────┼─────┼─────
+    \t      │     │
+    \t   4  │  5  │  6
+    \t      │     │
+    \t ─────┼─────┼─────
+    \t      │     │
+    \t   7  │  8  │  9
+    \t      │     │
+  BOARD
+
   private
 
-  attr_accessor :board_template, :current_board
+  attr_accessor :state
 
-  def update_board_state(shape, position)
+  def update_shapes_arrangement(shape, position)
     case position
     when 1..3
-      @board_state[0][position - 1] = shape
+      @shapes_arrangement[0][position - 1] = shape
     when 4..6
-      @board_state[1][position - 4] = shape
+      @shapes_arrangement[1][position - 4] = shape
     when 7..9
-      @board_state[2][position - 7] = shape
+      @shapes_arrangement[2][position - 7] = shape
     end
   end
 
   public
 
-  attr_reader :board_state
+  attr_reader :shapes_arrangement
 
   def initialize
-    @board_template = <<~BOARD
-      \t      │     │
-      \t   1  │  2  │  3
-      \t      │     │
-      \t ─────┼─────┼─────
-      \t      │     │
-      \t   4  │  5  │  6
-      \t      │     │
-      \t ─────┼─────┼─────
-      \t      │     │
-      \t   7  │  8  │  9
-      \t      │     │
-    BOARD
+    @shapes_arrangement = [['', '', ''],
+                           ['', '', ''],
+                           ['', '', '']]
 
-    @board_state = [['', '', ''],
-                    ['', '', ''],
-                    ['', '', '']]
-
-    @current_board = @board_template
+    @state = TEMPLATE
   end
 
   def draw
-    puts @current_board.encode('utf-8')
+    puts @state.encode('utf-8')
     puts
   end
 
   def insert_shape(shape, position)
-    @current_board = @current_board.gsub(
-      /#{Regexp.escape(position.to_s)}/,
-      shape
-    )
+    @state = @state.gsub(/#{Regexp.escape(position.to_s)}/, shape)
 
-    update_board_state(shape, position)
+    update_shapes_arrangement(shape, position)
 
     draw
   end
