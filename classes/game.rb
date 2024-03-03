@@ -49,7 +49,29 @@ class Game
                         end
     end
 
-    puts "Winner: #{@winner}"
+    if @winner == 'tie'
+      puts 'The game ended in a draw!'
+    else
+      puts "The winner is #{@winner}"
+    end
+    puts
+
+    print "Press '1' to restar and '0' to exit: "
+
+    user_input = 'empty'
+
+    loop do
+      user_input = gets.chomp
+
+      break if %w[0 1].include?(user_input)
+
+      puts
+      print 'The value entered is invalid, please try again: '
+    end
+
+    return if user_input == '0'
+
+    restart
   end
 
   private
