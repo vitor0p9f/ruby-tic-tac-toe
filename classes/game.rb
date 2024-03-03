@@ -86,5 +86,14 @@ class Game
     @win_or_tie = true unless @winner.empty?
   end
 
-  def restart; end
+  def restart
+    @board = Board.new
+    @current_player = ['Player 1', 'Player 2'].sample
+    @win_or_tie = false
+    @selected_positions = []
+    @winner = ''
+    @moves = 0
+
+    start
+  end
 end
