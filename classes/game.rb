@@ -103,6 +103,26 @@ class Game
       @winner = 'Player 2' if column.all? { |shape| shape == @players[1].shape }
     end
 
+    if first_column[0] == second_column[1] &&
+       second_column[1] == third_column[2] &&
+       third_column[2] == @players[0].shape
+      @winner = 'Player 1'
+    elsif first_column[0] == second_column[1] &&
+          second_column[1] == third_column[2] &&
+          third_column[2] == @players[1].shape
+      @winner = 'Player 2'
+    end
+
+    if third_column[0] == second_column[1] &&
+       second_column[1] == first_column[2] &&
+       first_column[2] == @players[0].shape
+      @winner = 'Player 1'
+    elsif third_column[0] == second_column[1] &&
+          second_column[1] == first_column[2] &&
+          first_column[2] == @players[1].shape
+      @winner = 'Player 2'
+    end
+
     @winner = 'tie' if @winner.empty? && @moves == 9
 
     @win_or_tie = true unless @winner.empty?
