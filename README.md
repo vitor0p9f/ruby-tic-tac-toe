@@ -2,7 +2,7 @@
   <p>This README is available in the following languages:</p>
   <br/>
   
-  <a href = "https://github.com/vitor0p9f/ruby-bubble-sort/blob/main/README.en.md" target="_blank">
+  <a href = "https://github.com/vitor0p9f/ruby-tic-tac-toe/blob/main/README.en.md" target="_blank">
     <img src="https://img.shields.io/badge/Language-English-blue"/>
   </a>
 </div>
@@ -32,7 +32,7 @@ https://github.com/vitor0p9f/ruby-tic-tac-toe/assets/153991573/6e351bc9-9634-4f7
 * Loops em Ruby.
 * Manipulação de strings com _regex_.
 * Heredoc
-* Manipulação de arrays utilizando os métodos _all?_ e _join_.
+* Manipulação de arrays.
 
 ## :triangular_flag_on_post: Desafios encontrados
 
