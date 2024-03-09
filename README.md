@@ -18,6 +18,7 @@
 
 ## :movie_camera: Demonstração do projeto
 
+https://github.com/vitor0p9f/ruby-tic-tac-toe/assets/153991573/6e351bc9-9634-4f77-9ea7-f7fe32e3d101
 
 ## :page_facing_up: Padrões de projeto / Paradigmas utilizados
 
